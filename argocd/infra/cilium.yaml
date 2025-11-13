@@ -19,7 +19,9 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
-  syncPolicy: {}
+  syncPolicy:
+    syncOptions:
+      - RespectIgnoreDifferences=true
   ignoreDifferences:
     - kind: Secret
       name: cilium-ca
