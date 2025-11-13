@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cilium
+  name: cilium-core
   namespace: argocd
 spec:
   project: default
@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: cilium
         valueFiles:
-          - $values/infra/networking/cilium/values.yaml
+          - $values/infra/networking/cilium-core/values.yaml
     - repoURL: https://github.com/fudoge/kube-manifests-lab.git
       targetRevision: main
       ref: values
