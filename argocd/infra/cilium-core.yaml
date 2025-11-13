@@ -6,6 +6,9 @@ metadata:
 spec:
   project: default
   sources:
+    - repoURL: https://github.com/fudoge/kube-manifests-lab.git
+      targetRevision: main
+      ref: values
     - chart: cilium
       repoURL: https://helm.cilium.io/
       targetRevision: 1.18.1
@@ -13,9 +16,6 @@ spec:
         releaseName: cilium
         valueFiles:
           - $values/infra/network/cilium-core/values.yaml
-    - repoURL: https://github.com/fudoge/kube-manifests-lab.git
-      targetRevision: main
-      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
