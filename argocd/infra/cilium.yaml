@@ -21,7 +21,8 @@ spec:
     namespace: kube-system
   syncPolicy: {}
   ignoreDifferences:
-    - kind: Secert
+    - kind: Secret
+      name: cilium-ca
       namespace: kube-system
       jsonPointers:
         - /data
