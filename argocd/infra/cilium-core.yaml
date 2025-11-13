@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: cilium
         valueFiles:
-          - $values/infra/networking/cilium-core/values.yaml
+          - $values/infra/network/cilium-core/values.yaml
     - repoURL: https://github.com/fudoge/kube-manifests-lab.git
       targetRevision: main
       ref: values
