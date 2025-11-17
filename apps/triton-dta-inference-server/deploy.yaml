@@ -52,6 +52,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /v2/health/live
+              port: 80
             initialDelaySeconds: 5
             timeoutSeconds: 5
             successThreshold: 1
