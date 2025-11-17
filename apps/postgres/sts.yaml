@@ -1,4 +1,3 @@
-# https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -37,9 +36,9 @@ spec:
           volumeMounts:
             - name: pgdata
               mountPath: /var/lib/postgresql/data
-  volumes:
-    - name: pgdata
-      persistentVolumeClaim:
-        claimName: postgres-pvc
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: postgres-pvc
 ---
 
