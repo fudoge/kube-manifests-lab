@@ -1,0 +1,78 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triton-dta-inference-server
+  namespace: triton-dta
+  labels:
+    app: triton-dta-inference-server
+spec:
+  selector:
+    matchLabels:
+      app: triton-dta-inference-server
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: triton-dta-inference-server
+      labels:
+        app: triton-dta-inference-server
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1 # dta-server
+      containers:
+        - name: triton-dta-inference-server
+          image: nvcr.io/nvidia/tritonserver:25.09-py3 # YY-MM
+          imagePullPolicy: IfNotPresent
+          args:
+            - tritonserver
+            - --model-repository=/models
+            - --strict-model-config=false
+            - --log-verbose=1
+          ports:
+            - containerPort: 8000 # http
+              name: triton-dta-inference-server-http
+            - containerPort: 8001 # grpc
+              name: triton-dta-inference-server-grpc
+            - containerPort: 8002 # prometheus
+              name: triton-dta-inference-server-prometheus
+          resources:
+            requests:
+              cpu: "1"
+              memory: 2Gi
+            limits:
+              cpu: "2"
+              memory: 4Gi
+              nvidia.com/gpu: 1
+          livenessProbe:
+            httpGet:
+              path: /v2/health/live
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /v2/health/ready
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 3
+            periodSeconds: 10
+          volumeMounts:
+            - name: triton-models
+              mountPath: /models
+      volumes:
+        - name: triton-models
+          persistentVolumeClaim:
+            claimName: triton-models-pvc
+      restartPolicy: Always
+---
+
