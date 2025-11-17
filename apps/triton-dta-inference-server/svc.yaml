@@ -1,0 +1,25 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: triton-dta-inference-svc
+  namespace: triton-dta
+spec:
+  selector:
+    app: triton-dta-inference-server
+  type: LoadBalancer
+  ports:
+    - name: dta-http
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+    - name: dta-grpc
+      protocol: TCP
+      port: 8001
+      targetPort: 8001
+    - name: dta-prometheus
+      protocol: TCP
+      port: 8002
+      targetPort: 8002
+---
+
