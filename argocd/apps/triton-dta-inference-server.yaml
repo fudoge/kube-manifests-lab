@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/fudoge/kube-manifests-lab.git
     targetRevision: main
-    path: apps/triton-dta-inference-server/
+    path: apps/triton-dta-inference-server
   destination:
     server: https://kubernetes.default.svc
     namespace: triton-dta
