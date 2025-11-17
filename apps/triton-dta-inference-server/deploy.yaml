@@ -51,7 +51,7 @@ spec:
               nvidia.com/gpu: 1
           livenessProbe:
             httpGet:
-              path: /v2/health/live
+              path: /api/health/live
               port: 80
             initialDelaySeconds: 60
             timeoutSeconds: 5
