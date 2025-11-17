@@ -49,20 +49,25 @@ spec:
               cpu: "2"
               memory: 4Gi
               nvidia.com/gpu: 1
+          startupProbe:
+            httpGet:
+              path: /v2/health/ready
+              port: 8000
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /v2/health/live
               port: 8000
-            initialDelaySeconds: 60
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
-            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 60
+            periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /v2/health/ready
               port: 8000
-            initialDelaySeconds: 60
             timeoutSeconds: 2
             successThreshold: 1
             failureThreshold: 3
