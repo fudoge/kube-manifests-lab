@@ -52,7 +52,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /api/health/live
-              port: 80
+              port: 8000
             initialDelaySeconds: 60
             timeoutSeconds: 5
             successThreshold: 1
@@ -61,7 +61,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /v2/health/ready
-              port: 80
+              port: 8000
             initialDelaySeconds: 60
             timeoutSeconds: 2
             successThreshold: 1
