@@ -4,7 +4,6 @@ metadata:
   name: triton-models-pvc
   namespace: triton-dta
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:

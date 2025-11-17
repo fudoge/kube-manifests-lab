@@ -6,7 +6,6 @@ metadata:
   labels:
     type: local
 spec:
-  stroageClassName: manual
   capacity:
     storage: 5Gi
   accessModes:
