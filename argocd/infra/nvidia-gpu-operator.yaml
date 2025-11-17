@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-    - chart: nvidia
+    - chart: gpu-operator
       repoURL: https://helm.ngc.nvidia.com/nvidia
       targetRevision: v25.3.4
       helm:
@@ -14,4 +14,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: gpu-operator
-  syncPolicy: {}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
