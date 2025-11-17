@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/fudoge/kube-manifests-lab.git
     targetRevision: main
-    path: infra/cilium-network
+    path: infra/network/cilium-network
   destination:
     server: https://kubernetes.default.svc
   syncPolicy: {}

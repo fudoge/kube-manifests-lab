@@ -1,4 +1,4 @@
-apiVersion: cilium.io/v2aplha1
+apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: local-nw-ip-pool
