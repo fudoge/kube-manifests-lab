@@ -16,11 +16,13 @@ spec:
       labels:
         app: postgres
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1 # dta-server
       terminationGracePeriodSeconds: 10
       containers:
         - name: postgres
           image: postgres:15.15-alpine3.22
-          environment:
+          env:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_DB
