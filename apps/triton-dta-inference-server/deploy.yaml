@@ -36,11 +36,11 @@ spec:
             - --log-verbose=1
           ports:
             - containerPort: 8000 # http
-              name: triton-dta-inference-server-http
+              name: dta-http
             - containerPort: 8001 # grpc
-              name: triton-dta-inference-server-grpc
+              name: dta-grpc
             - containerPort: 8002 # prometheus
-              name: triton-dta-inference-server-prometheus
+              name: dta-prometheus
           resources:
             requests:
               cpu: "1"
