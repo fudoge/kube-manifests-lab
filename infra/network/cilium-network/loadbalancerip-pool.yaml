@@ -1,0 +1,9 @@
+apiVersion: cilium.io/v2aplha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: local-nw-ip-pool
+spec:
+  blocks:
+    - cidr: 192.168.0.200/29
+    - cidr: 192.168.0.208/28
+    - cidr: 192.168.0.224/27
