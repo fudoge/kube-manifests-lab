@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: triton-gw
+  name: triton-gateway
   namespace: triton-gw
 spec:
   selector:
-    app: triton-gw
+    app: triton-gateway
   type: LoadBalancer
   ports:
     - name: http
