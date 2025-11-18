@@ -1,0 +1,42 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triton-gateway
+  namespace: triton-gw
+  labels:
+    app: triton-gateway
+spec:
+  selector:
+    matchLabels:
+      app: triton-gateway
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: triton-gateway
+      labels:
+        app: triton-gateway
+    spec:
+      containers:
+        - name: triton-gateway
+          image: riveroverflow/triton-gw:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 500m
+              memory: 200mi
+            limits:
+              cpu: 1
+              memory: 500mi
+          ports:
+            - containerPort: 800
+              name: triton-gateway
+      restartPolicy: Always
+---
+

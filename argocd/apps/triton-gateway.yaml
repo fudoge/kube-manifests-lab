@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: triton-gw
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/fudoge/kube-manifests-lab.git
+    targetRevision: main
+    path: apps/triton-gateway
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: triton-gw
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
