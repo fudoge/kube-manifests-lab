@@ -23,6 +23,8 @@ spec:
       labels:
         app: triton-gateway
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1 # dta-server
       containers:
         - name: triton-gateway
           image: riveroverflow/triton-gw:latest
