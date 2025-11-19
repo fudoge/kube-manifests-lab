@@ -66,3 +66,5 @@ encryption:
 installCRDs: true
 l2announcements:
   enabled: true
+  lease:
+    enabled: true
