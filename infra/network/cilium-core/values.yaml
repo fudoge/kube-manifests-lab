@@ -62,3 +62,7 @@ enableNetworkPolicy: true
 encryption:
   enabled: true
   type: wireguard
+# L2 announcement
+installCRDs: true
+l2announcements:
+  enabled: true
